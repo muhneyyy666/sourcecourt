@@ -1,4 +1,4 @@
-# OpenAI Build Week 2026 submission draft
+# OpenAI Build Week 2026 submission package
 
 ## Project
 
@@ -6,6 +6,12 @@
 **Track:** Education  
 **Runtime model:** `gpt-5.6-sol`  
 **Reasoning effort:** `max`
+
+**Status:** Submitted · 5/5 Devpost steps complete · July 19, 2026
+
+**Public entry:** [SourceCourt on Devpost](https://devpost.com/software/sourcecourt-defend-the-claim-not-the-guess)
+
+**Judge attachment:** `SourceCourt-Judge-Packet.pdf`
 
 ## One-line pitch
 
@@ -78,7 +84,7 @@ Source code: https://github.com/muhneyyy666/sourcecourt
 Built for the OpenAI Build Week 2026 Education track.
 ```
 
-Upload `demo/sourcecourt-demo-en.srt` as the English caption file after the video finishes processing; the MP4 also contains an embedded English caption track.
+The published video includes the reviewed English caption track from `demo/sourcecourt-demo-en.srt`; the local MP4 also contains embedded English captions.
 
 ## Final checklist
 
@@ -94,4 +100,8 @@ Upload `demo/sourcecourt-demo-en.srt` as the English caption file after the vide
 - [x] Item-level source provenance and host terms are reviewed and documented in `DATA_PROVENANCE.md`.
 - [x] `/feedback` is submitted and the qualifying session ID is copied exactly.
 - [x] Eligibility, deadline, and solo team status are reconfirmed against the Official Rules.
-- [ ] Keep the public origin online through August 12, 2026, when results are scheduled to be announced.
+- [x] Devpost shows `Submitted` and `5/5 steps done`; the judge PDF is attached in Additional info.
+
+## Judging-period operation
+
+Keep the public origin, repository, and YouTube video unchanged and online through at least August 12, 2026, when results are scheduled to be announced. Run `npm run smoke:public` regularly through the end of judging.

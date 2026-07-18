@@ -15,7 +15,7 @@ async function withServer(run) {
   }
 }
 
-async function postValidChallenge(baseUrl, forwardedFor) {
+async function postValidChallenge(baseUrl, forwardedFor, safetyIdentifier) {
   const response = await fetch(`${baseUrl}/api/cross-examine`, {
     method: "POST",
     headers: {
@@ -24,7 +24,8 @@ async function postValidChallenge(baseUrl, forwardedFor) {
     },
     body: JSON.stringify({
       claim: "The pump was the sole cause of the outbreak [S01] [S02].",
-      citedSourceIds: ["S01", "S02"]
+      citedSourceIds: ["S01", "S02"],
+      ...(safetyIdentifier ? { safetyIdentifier } : {})
     })
   });
   await response.arrayBuffer();
@@ -137,7 +138,7 @@ test("the static app is served with security headers", async () => {
   });
 });
 
-test("client-supplied forwarding headers cannot bypass the default rate limit", async () => {
+test("forwarding headers cannot bypass limits and independent browser sessions remain usable", async () => {
   const previous = process.env.TRUST_PROXY;
   delete process.env.TRUST_PROXY;
   try {
@@ -146,6 +147,14 @@ test("client-supplied forwarding headers cannot bypass the default rate limit", 
         assert.equal(await postValidChallenge(baseUrl, `198.51.100.${index + 1}`), 200);
       }
       assert.equal(await postValidChallenge(baseUrl, "203.0.113.200"), 429);
+      assert.equal(
+        await postValidChallenge(
+          baseUrl,
+          "203.0.113.200",
+          "sc_independent_browser_session_1234"
+        ),
+        200
+      );
     });
   } finally {
     if (previous === undefined) delete process.env.TRUST_PROXY;

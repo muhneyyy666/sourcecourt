@@ -31,7 +31,8 @@ const MIME = new Map([
   [".ico", "image/x-icon"]
 ]);
 
-const RATE_LIMIT = 20;
+const SESSION_RATE_LIMIT = 20;
+const NETWORK_RATE_LIMIT = 200;
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 const MAX_RATE_CLIENTS = 4096;
 
@@ -80,7 +81,7 @@ function clientId(request) {
   return isIP(candidate) ? candidate : remoteAddress;
 }
 
-function permitRequest(rateWindows, id) {
+function permitRequest(rateWindows, id, limit) {
   const now = Date.now();
   const record = rateWindows.get(id);
   if (!record || now - record.startedAt > RATE_WINDOW_MS) {
@@ -95,9 +96,16 @@ function permitRequest(rateWindows, id) {
     rateWindows.set(id, { count: 1, startedAt: now });
     return true;
   }
-  if (record.count >= RATE_LIMIT) return false;
+  if (record.count >= limit) return false;
   record.count += 1;
   return true;
+}
+
+function sessionRateId(body, networkId) {
+  const value = body?.safetyIdentifier;
+  return typeof value === "string" && /^sc_[A-Za-z0-9_-]{20,80}$/.test(value)
+    ? `session:${value}`
+    : `network:${networkId}`;
 }
 
 async function serveStatic(pathname, response) {
@@ -122,7 +130,8 @@ async function serveStatic(pathname, response) {
 }
 
 export function createSourceCourtServer() {
-  const rateWindows = new Map();
+  const sessionRateWindows = new Map();
+  const networkRateWindows = new Map();
   return createHttpServer(async (request, response) => {
     const url = new URL(request.url || "/", "http://localhost");
 
@@ -146,15 +155,24 @@ export function createSourceCourtServer() {
           sendJson(response, 405, { error: "method_not_allowed" });
           return;
         }
-        const id = clientId(request);
-        if (!permitRequest(rateWindows, id)) {
+        const body = await readJson(request);
+        const networkId = clientId(request);
+        const sessionId = sessionRateId(body, networkId);
+        const sessionAllowed = permitRequest(
+          sessionRateWindows,
+          sessionId,
+          SESSION_RATE_LIMIT
+        );
+        const networkAllowed =
+          sessionAllowed &&
+          permitRequest(networkRateWindows, networkId, NETWORK_RATE_LIMIT);
+        if (!sessionAllowed || !networkAllowed) {
           sendJson(response, 429, {
             error: "rate_limited",
-            message: "The live bench allows 20 challenges every 10 minutes. Continue with the current record."
+            message: "The live bench is temporarily at capacity. Continue with the current record and try again shortly."
           });
           return;
         }
-        const body = await readJson(request);
         const result = await crossExamine({
           claim: body.claim,
           citedSourceIds: body.citedSourceIds,

@@ -8,7 +8,11 @@ SourceCourt is a closed-world adversarial reasoning lab for students writing evi
 
 **Live demo:** [Open SourceCourt](https://sourcecourt.online/)
 
-**Demo video:** [Watch the 2:36 public YouTube walkthrough](https://youtu.be/Uaos8mr1Vug)
+**Demo video:** [Watch the 2:35 public YouTube walkthrough](https://youtu.be/Uaos8mr1Vug)
+
+**Devpost submission:** [View the submitted OpenAI Build Week entry](https://devpost.com/software/sourcecourt-defend-the-claim-not-the-guess)
+
+**Judging evidence:** [Open the verification matrix and build provenance](EVIDENCE.md)
 
 ## Why it matters
 
@@ -110,7 +114,7 @@ Whether a source semantically supports, qualifies, or contradicts a claim is not
 
 ## How we collaborated with Codex
 
-Codex was the primary build collaborator in one build thread rather than the product's runtime tutor. It compared product directions, implemented the zero-dependency Node application and strict Structured Outputs/server-validation boundary, wrote and ran 32 deterministic tests, replayed the complete live browser flow, audited security and accessibility, and assembled the deployment and demo package. SourceCourt was created during the Build Week submission period; its dated commit history begins on July 18, 2026.
+Codex was the primary build collaborator in one build thread rather than the product's runtime tutor. It compared product directions, implemented the zero-dependency Node application and strict Structured Outputs/server-validation boundary, wrote and ran 32 deterministic tests, replayed the complete live browser flow, audited security and accessibility, and assembled the deployment and demo package. SourceCourt was created during the Build Week submission period; its dated commit history begins on July 18, 2026. The primary `/feedback` session ID and timestamped build trail are recorded in [EVIDENCE.md](EVIDENCE.md).
 
 The entrant retained the product and editorial decisions: choosing the Education problem, approving the adversarial-learning direction, deciding that the learner—not the model—must write the final claim, reviewing the source excerpts and limitations, accepting the explicit metric boundaries, and approving the public experience and submission. Codex proposed and executed work under those decisions, surfaced risks, and provided checkable evidence; it did not determine historical truth or silently replace a failed live run with a mock.
 
@@ -140,11 +144,11 @@ Known evaluation boundary: the suite can prove schema, provenance, and metric be
 ## Privacy and security
 
 - The API key is read by the Node server only and is never included in browser state or API responses.
-- The app has no accounts, database, analytics, remote storage, or third-party browser scripts.
-- Only the claim, cited IDs, curated case record, and a random non-PII browser-session safety identifier are sent to the configured model endpoint.
+- The app has no accounts, database, analytics, or third-party browser scripts, and SourceCourt itself does not persist learner input.
+- The claim, cited IDs, curated case record, and a random non-PII browser-session safety identifier are sent to the configured model endpoint. That provider's data-handling terms apply; learners should not enter names, contact details, or other personal data.
 - The anonymous session identifier follows [OpenAI's safety-identifier guidance](https://developers.openai.com/api/docs/guides/safety-best-practices#implement-safety-identifiers) and contains no username, email, or learner text.
-- Requests are limited to 64 KiB and 20 cross-examinations per IP per ten minutes.
-- Forwarded client IPs are ignored unless `TRUST_PROXY=1`; enable it only behind an edge that sanitizes forwarding headers. The in-process rate table is bounded, and public multi-instance deployments also require provider-level cost controls.
+- Requests are limited to 64 KiB, 20 cross-examinations per anonymous browser session per ten minutes, and a separate 200-request network safety cap. The second cap prevents random session identifiers from creating unbounded model spend while allowing independent judges to share a reverse-proxy address.
+- Forwarded client IPs are ignored unless `TRUST_PROXY=1`; enable it only behind an edge that sanitizes forwarding headers. Both in-process rate tables are bounded, and public multi-instance deployments also require provider-level cost controls.
 - A restrictive Content Security Policy, frame denial, MIME sniffing protection, and permissions policy are enabled.
 - `.env.local`, Playwright artifacts, and output files are excluded from version control.
 
@@ -173,6 +177,7 @@ lib/validator.mjs       Provenance validation and deterministic audit
 public/                 Accessible zero-build web interface
 scripts/configure.mjs   Hidden-input local configuration
 scripts/live-smoke.mjs  Sanitized real-model release gate
+scripts/public-smoke.mjs Public availability and security-header gate
 test/                   Node test suite
 ```
 

@@ -8,6 +8,28 @@
       content="SourceCourt is a source-bound cross-examination lab for learning evidence-based reasoning."
     >
     <meta name="theme-color" content="#102b30">
+    <link rel="canonical" href="https://sourcecourt.online/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sourcecourt.online/">
+    <meta property="og:title" content="SourceCourt — Defend the claim, not the guess">
+    <meta
+      property="og:description"
+      content="GPT-5.6 cross-examines a learner's claim against a closed historical record, then the learner produces an auditable evidence brief."
+    >
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/muhneyyy666/sourcecourt/main/docs/sourcecourt-live-cross-examination.png"
+    >
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SourceCourt — Defend the claim, not the guess">
+    <meta
+      name="twitter:description"
+      content="Source-grounded AI cross-examination for evidence-based historical reasoning."
+    >
+    <meta
+      name="twitter:image"
+      content="https://raw.githubusercontent.com/muhneyyy666/sourcecourt/main/docs/sourcecourt-live-cross-examination.png"
+    >
     <title>SourceCourt — Defend the claim, not the guess</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/styles.css">
@@ -50,7 +72,11 @@
           <p class="case-question" id="case-subtitle">
             Can one water pump explain the 1854 Soho cholera outbreak?
           </p>
+          <p class="product-promise">
+            GPT-5.6 cross-examines the learner’s claim against a closed record; the learner then produces an auditable before-and-after evidence brief.
+          </p>
           <p class="case-background" id="case-background"></p>
+          <a class="case-start" href="#claim-input">Start the case ↓</a>
         </div>
 
         <dl class="case-facts" aria-label="Case facts">
@@ -135,7 +161,7 @@
               aria-describedby="claim-help claim-status"
             ></textarea>
             <p class="field-help" id="claim-help">
-              Cite a source by adding its record marker, such as <code>[S01]</code>. One precise claim is stronger than three vague ones.
+              Cite a source by adding its record marker, such as <code>[S01]</code>. One precise claim is stronger than three vague ones. Your claim is sent to the configured model provider for cross-examination; do not enter personal data.
             </p>
 
             <div class="claim-status" id="claim-status" aria-live="polite"></div>

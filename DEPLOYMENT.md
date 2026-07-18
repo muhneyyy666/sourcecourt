@@ -78,12 +78,12 @@ From a clean browser session:
 
 If any step falls back to fixture, do not record the final demo until the upstream failure is resolved.
 
-## 5. Submission closure
+## 5. Submission record and ongoing operation
 
-After the public URL passes:
+The repository, public video, `/feedback` ID, Devpost entry, and judge packet were submitted on July 19, 2026. After any deployment change:
 
-- publish the reviewed repository with `.env.local` absent;
-- record a captioned demo under three minutes showing the live badge and evidence brief;
-- run `/feedback` from the qualifying Codex task and copy the returned session ID exactly;
-- replace all remaining placeholders in `SUBMISSION.md`;
-- reconfirm the deadline, eligibility, team membership, and prize-account allocation against the official rules.
+- keep `.env.local` and every credential absent from the repository and browser bundle;
+- run `npm run check`, `npm run smoke:live`, and `npm run smoke:public`;
+- confirm the public behavior still matches the submitted video and description;
+- keep the origin available through judging and, prudently, through the August 12 results announcement;
+- do not change the Devpost submission unless correcting a hard requirement, because a resave can return it to moderation.

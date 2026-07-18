@@ -101,4 +101,4 @@ The current verified live recording can be assembled into an exact 2:35 H.264/AA
 scripts/build-demo-draft.sh
 ```
 
-See [`demo/README.md`](demo/README.md) for the local artifact paths and final narration handoff. The generated system voice is a review placeholder, not an automatic decision to publish that voice.
+See [`demo/README.md`](demo/README.md) for the local artifact paths and rebuild procedure. The published demo uses the permitted AI-assisted system narration documented there.

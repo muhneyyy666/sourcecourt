@@ -309,9 +309,28 @@ function renderChallenge() {
 async function runCrossExamination() {
   if (state.loading) return;
   state.loading = true;
+  const progressTimers = [];
   elements.challengeButton.disabled = true;
   elements.challengeButton.querySelector("span:first-child").textContent = "Opposing counsel is reading…";
-  setStatus(elements.claimStatus, "Testing your claim against every source in the closed record.");
+  setStatus(
+    elements.claimStatus,
+    "Step 1 of 3 · Reading the closed record. GPT-5.6 max reasoning usually takes about 20–35 seconds."
+  );
+  progressTimers.push(
+    setTimeout(() => {
+      if (state.loading) {
+        setStatus(elements.claimStatus, "Step 2 of 3 · Testing the claim for one material weakness.");
+      }
+    }, 8000),
+    setTimeout(() => {
+      if (state.loading) {
+        setStatus(
+          elements.claimStatus,
+          "Step 3 of 3 · Waiting for the response; server code will verify every returned source ID."
+        );
+      }
+    }, 22000)
+  );
 
   try {
     const response = await fetch("/api/cross-examine", {
@@ -337,6 +356,7 @@ async function runCrossExamination() {
   } catch (error) {
     setStatus(elements.claimStatus, error.message || "The bench could not read this claim.", "error");
   } finally {
+    progressTimers.forEach(clearTimeout);
     state.loading = false;
     elements.challengeButton.querySelector("span:first-child").textContent = "Cross-examine my claim";
     renderClaimState();

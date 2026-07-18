@@ -4,13 +4,22 @@
   "private": true,
   "type": "module",
   "description": "A source-bound cross-examination lab for learning evidence-based reasoning.",
+  "homepage": "https://sourcecourt.online/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/muhneyyy666/sourcecourt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/muhneyyy666/sourcecourt/issues"
+  },
   "scripts": {
     "start": "node server.mjs",
     "dev": "node --watch server.mjs",
     "configure": "node scripts/configure.mjs",
     "smoke:live": "node scripts/live-smoke.mjs",
+    "smoke:public": "node scripts/public-smoke.mjs",
     "test": "node --test",
-    "check": "node --check server.mjs && node --check public/app.js && node --check public/metrics.mjs && node --check scripts/configure.mjs && node --check scripts/live-smoke.mjs && node --test"
+    "check": "node --check server.mjs && node --check public/app.js && node --check public/metrics.mjs && node --check scripts/configure.mjs && node --check scripts/live-smoke.mjs && node --check scripts/public-smoke.mjs && node --test"
   },
   "engines": {
     "node": ">=22"

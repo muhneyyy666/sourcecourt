@@ -62,10 +62,17 @@ try {
   try {
     parsedBaseUrl = new URL(baseUrl);
   } catch {
-    throw new Error("The Base URL must be a valid http(s) URL.");
+    throw new Error("The Base URL must be a valid URL.");
   }
-  if (!["http:", "https:"].includes(parsedBaseUrl.protocol)) {
-    throw new Error("The Base URL must use http or https.");
+  const loopback = ["127.0.0.1", "localhost", "::1", "[::1]"].includes(parsedBaseUrl.hostname);
+  if (parsedBaseUrl.protocol !== "https:" && !(parsedBaseUrl.protocol === "http:" && loopback)) {
+    throw new Error("The Base URL must use HTTPS unless it points to loopback.");
+  }
+  if (parsedBaseUrl.username || parsedBaseUrl.password) {
+    throw new Error("The Base URL must not contain credentials.");
+  }
+  if (parsedBaseUrl.search || parsedBaseUrl.hash) {
+    throw new Error("The Base URL must not contain a query or fragment.");
   }
 
   const key = await readHidden("Paste the API key (input hidden): ");
