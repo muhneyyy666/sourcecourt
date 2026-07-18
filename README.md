@@ -10,20 +10,20 @@ SourceCourt is a closed-world adversarial reasoning lab for students writing evi
 
 ## Why it matters
 
-Fluent writing can still be poorly supported. Conventional AI tutors often answer or rewrite for the learner. SourceCourt changes the role of the model: it mounts the strongest challenge permitted by a curated record, while the learner remains responsible for the final position.
+Fluent writing can still be poorly supported. Conventional AI tutors often answer or rewrite for the learner. SourceCourt changes the role of the model: it mounts a high-value challenge grounded in a curated record, while the learner remains responsible for the final position.
 
 The current MVP is deliberately narrow: one seven-minute case on the 1854 Broad Street cholera outbreak, ten inspectable source cards, one cross-examination, and one portable evidence brief.
 
-## 90-second judge path
+## Quick judge path
 
 1. [Open the live app](https://sourcecourt.online/). The starter claim says the Broad Street pump was the **sole** cause.
 2. Cite `S01` and `S02`, then select **Cross-examine my claim**.
-3. Opposing counsel raises the intervention chronology and attaches exact record excerpts.
-4. In **Address the counterevidence**, enter:
+3. Opposing counsel identifies one material weakness and attaches exact record excerpts. Note the attached record IDs; the live model may select a different valid weakness on each run.
+4. In **Address the counterevidence**, answer the challenge and cite at least one record ID attached to that challenge. If it raises the intervention chronology and attaches `S03`, you can enter:
 
    > The decline before handle removal limits the intervention as proof [S03]. I therefore treat it as precautionary and rely on independent exposure comparisons rather than a sole-cause claim.
 
-5. Replace the revised claim with:
+5. Replace the revised claim with a narrower position that incorporates your run's relevant evidence. For the chronology example, enter:
 
    > Spatial clustering, household interviews, and natural comparisons strongly support Broad Street pump water as a major transmission route in the Soho outbreak, while the intervention timing does not establish a sole cause [S01] [S02] [S03] [S04].
 
@@ -108,7 +108,7 @@ Whether a source semantically supports, qualifies, or contradicts a claim is not
 
 ## How we collaborated with Codex
 
-Codex accelerated the end-to-end Build Week workflow rather than serving as the product's runtime tutor. It helped research the competition and historical-source constraints, compare product directions, turn the selected SourceCourt concept into an interaction model, implement the zero-build Node application, design the Structured Outputs contract and fallback states, write and replay tests, audit accessibility and security, automate the browser demo, configure the public deployment, and assemble the submission documentation and video package.
+Codex was the primary build collaborator in one build thread rather than the product's runtime tutor. It compared product directions, implemented the zero-dependency Node application and strict Structured Outputs/server-validation boundary, wrote and ran 32 deterministic tests, replayed the complete live browser flow, audited security and accessibility, and assembled the deployment and demo package. SourceCourt was created during the Build Week submission period; its dated commit history begins on July 18, 2026.
 
 The entrant retained the product and editorial decisions: choosing the Education problem, approving the adversarial-learning direction, deciding that the learner—not the model—must write the final claim, reviewing the source excerpts and limitations, accepting the explicit metric boundaries, and approving the public experience and submission. Codex proposed and executed work under those decisions, surfaced risks, and provided checkable evidence; it did not determine historical truth or silently replace a failed live run with a mock.
 
@@ -174,6 +174,6 @@ scripts/live-smoke.mjs  Sanitized real-model release gate
 test/                   Node test suite
 ```
 
-Built for the OpenAI Build Week 2026 Education track with Codex as the implementation and research collaborator, and GPT-5.6 as the constrained runtime adversary. See [SUBMISSION.md](SUBMISSION.md) and [DEMO_SCRIPT.md](DEMO_SCRIPT.md) for submission-ready copy and the recording plan.
+Built for the OpenAI Build Week 2026 Education track with Codex as the implementation and research collaborator, and GPT-5.6 as the constrained runtime adversary. See [SUBMISSION.md](SUBMISSION.md) for the current submission package and [DEMO_SCRIPT.md](DEMO_SCRIPT.md) for the recording plan.
 
 MIT licensed. Historical source materials remain subject to their respective hosts' terms.

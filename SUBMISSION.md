@@ -9,15 +9,15 @@
 
 ## One-line pitch
 
-SourceCourt is an adversarial reasoning lab where students defend historical claims, GPT-5.6 challenges them from a closed record, and deterministic code audits provenance and revision.
+Students defend historical claims against source-grounded AI cross-examination—then revise with auditable evidence.
 
 ## Short description
 
-Students often confuse fluent writing with supported reasoning, while many AI tutors simply produce a better answer for them. SourceCourt reverses that relationship. In a curated Broad Street cholera case, the learner selects evidence and makes a claim; GPT-5.6 acts only as opposing counsel and exposes one material weakness using the closed record. The learner must answer the counterevidence and revise the claim. Server-side validation rejects invented source IDs and reattaches every excerpt from local data, while deterministic metrics show changes in citation coverage and opposing-record response signals. The final artifact is a downloadable, auditable evidence brief—not an AI-written essay.
+Students often confuse fluent writing with supported reasoning, while many AI tutors simply produce a better answer for them. SourceCourt reverses that relationship. In a curated Broad Street cholera case, the learner selects evidence and makes a claim; GPT-5.6 acts only as opposing counsel and attempts to expose one material weakness using the closed record. The learner must answer the counterevidence and revise the claim. Server-side validation rejects invented source IDs and reattaches every excerpt from local data, while deterministic metrics show changes in citation coverage and opposing-record response signals. The final artifact is a downloadable, auditable evidence brief—not an AI-written essay.
 
 ## What is technically distinctive
 
-- GPT-5.6 performs the nontrivial semantic task: choose the strongest source-grounded challenge to the learner's exact claim.
+- GPT-5.6 performs the nontrivial semantic task: choose a high-value source-grounded challenge to the learner's exact claim.
 - Responses API Structured Outputs define a strict schema; a compatibility route retains `max` reasoning effort where needed.
 - A second server validator rejects any unknown or repeated source ID, illegal relation/tag, invalid confidence, missing field, or oversized text.
 - Quotations and source links are server-owned and attached only after validation.
@@ -37,22 +37,31 @@ The MVP demonstrates task-level improvement only. It does not claim to prove lea
 - Fixture judge path: surface record-use score `48 → 93`, evidence-facet coverage `33% → 83%`, opposing-record response signal `0% → 100%`.
 - 32 deterministic tests currently pass.
 - A strict live smoke and full browser replay passed with the Responses route, provider-reported `gpt-5.6-sol`, reasoning effort `max`, `completed` status, a request ID, and server-resolved provenance.
-- A 155-second final H.264/AAC demo was assembled from the verified public live run with reviewed English narration and an English caption track; only the public upload remains.
+- A 155-second final H.264/AAC demo was assembled from the verified public live run with reviewed English narration and an English caption track; its public upload and anonymous playback check remain.
 - Tests cover mixed valid/invented citations, invalid contracts, stable fixture replay, API behavior, security headers, and credential non-exposure.
 - Known limitations are public: provenance can be verified by code, but semantic relevance remains an AI judgment and surface metrics can be gamed.
 
 ## How Codex was used
 
-Codex supported the end-to-end build: competition and precedent research; concept selection; source-set design; product positioning; interaction and visual design; zero-dependency implementation; Structured Outputs integration; validation boundaries; deterministic evaluation; security review; browser automation; responsive and accessibility QA; and submission documentation.
+Codex was the primary build collaborator in one build thread. It compared product directions, implemented the zero-dependency Node application and strict Structured Outputs/server-validation boundary, wrote and ran 32 deterministic tests, replayed the complete live browser flow, audited security and accessibility, and assembled the deployment and demo package. The entrant made the core product, editorial, and risk decisions throughout.
 
 GPT-5.6 has a separate in-product role: it runs the live, constrained cross-examination. Codex did not replace that runtime capability with a mock; the fixture is labeled as a fallback.
 
-## Links to complete before submission
+## Submission links and required identifier
 
 - **Live app:** [Open SourceCourt](https://sourcecourt.online/)
 - **Public repository:** [SourceCourt on GitHub](https://github.com/muhneyyy666/sourcecourt)
 - **Demo video:** `[record and verify]`
 - **Primary Codex /feedback session ID:** `[add after feedback submission]`
+
+## Devpost fields
+
+**Built With:** Codex; GPT-5.6; OpenAI Responses API; Structured Outputs; Node.js; JavaScript; HTML; CSS; Cloudflare Workers; Tailscale Funnel
+
+**Try it out:**
+
+- Live app: https://sourcecourt.online/
+- Public source and setup instructions: https://github.com/muhneyyy666/sourcecourt
 
 ## YouTube upload metadata
 
@@ -84,4 +93,5 @@ Upload `demo/sourcecourt-demo-en.srt` as the English caption file after the vide
 - [x] API key and private endpoint are absent from repository, video, download, and browser bundle.
 - [x] Item-level source provenance and host terms are reviewed and documented in `DATA_PROVENANCE.md`.
 - [ ] `/feedback` is submitted and the qualifying session ID is copied exactly.
-- [ ] Eligibility, deadline, team membership, and prize-account allocation are reconfirmed against Official Rules.
+- [x] Eligibility, deadline, and solo team status are reconfirmed against the Official Rules.
+- [ ] Keep the public origin online through August 12, 2026, when results are scheduled to be announced.
