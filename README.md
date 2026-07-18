@@ -106,6 +106,14 @@ flowchart LR
 
 Whether a source semantically supports, qualifies, or contradicts a claim is not deterministic truth. The cross-examination may be wrong. SourceCourt makes provenance auditable and constrains the model; it does not turn model interpretation into fact.
 
+## How we collaborated with Codex
+
+Codex accelerated the end-to-end Build Week workflow rather than serving as the product's runtime tutor. It helped research the competition and historical-source constraints, compare product directions, turn the selected SourceCourt concept into an interaction model, implement the zero-build Node application, design the Structured Outputs contract and fallback states, write and replay tests, audit accessibility and security, automate the browser demo, configure the public deployment, and assemble the submission documentation and video package.
+
+The entrant retained the product and editorial decisions: choosing the Education problem, approving the adversarial-learning direction, deciding that the learner—not the model—must write the final claim, reviewing the source excerpts and limitations, accepting the explicit metric boundaries, and approving the public experience and submission. Codex proposed and executed work under those decisions, surfaced risks, and provided checkable evidence; it did not determine historical truth or silently replace a failed live run with a mock.
+
+GPT-5.6 has a separate, narrowly defined role inside the running application. It performs the live semantic cross-examination against the closed record. Server code—not Codex and not the model—validates the contract, reattaches source-owned excerpts, computes the audit metrics, and labels any fallback. This separation lets judges see both required contributions: Codex as the build-and-evaluation collaborator, and GPT-5.6 as the constrained runtime opposing counsel.
+
 ## Deterministic audit
 
 | Metric | Definition | Direction |
