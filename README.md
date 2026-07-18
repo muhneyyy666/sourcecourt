@@ -8,6 +8,8 @@ SourceCourt is a closed-world adversarial reasoning lab for students writing evi
 
 **Live demo:** [Open SourceCourt](https://sourcecourt.online/)
 
+**Demo video:** [Watch the 2:36 public YouTube walkthrough](https://youtu.be/Uaos8mr1Vug)
+
 ## Why it matters
 
 Fluent writing can still be poorly supported. Conventional AI tutors often answer or rewrite for the learner. SourceCourt changes the role of the model: it mounts a high-value challenge grounded in a curated record, while the learner remains responsible for the final position.

@@ -37,7 +37,7 @@ The MVP demonstrates task-level improvement only. It does not claim to prove lea
 - Fixture judge path: surface record-use score `48 → 93`, evidence-facet coverage `33% → 83%`, opposing-record response signal `0% → 100%`.
 - 32 deterministic tests currently pass.
 - A strict live smoke and full browser replay passed with the Responses route, provider-reported `gpt-5.6-sol`, reasoning effort `max`, `completed` status, a request ID, and server-resolved provenance.
-- A 155-second final H.264/AAC demo was assembled from the verified public live run with reviewed English narration and an English caption track; its public upload and anonymous playback check remain.
+- A 155-second H.264/AAC demo from the verified public live run is published on YouTube with reviewed English narration and an English caption track; anonymous YouTube oEmbed lookup returns the correct title and SourceCourt channel.
 - Tests cover mixed valid/invented citations, invalid contracts, stable fixture replay, API behavior, security headers, and credential non-exposure.
 - Known limitations are public: provenance can be verified by code, but semantic relevance remains an AI judgment and surface metrics can be gamed.
 
@@ -51,7 +51,7 @@ GPT-5.6 has a separate in-product role: it runs the live, constrained cross-exam
 
 - **Live app:** [Open SourceCourt](https://sourcecourt.online/)
 - **Public repository:** [SourceCourt on GitHub](https://github.com/muhneyyy666/sourcecourt)
-- **Demo video:** `[record and verify]`
+- **Demo video:** [SourceCourt on YouTube](https://youtu.be/Uaos8mr1Vug)
 - **Primary Codex /feedback session ID:** `[add after feedback submission]`
 
 ## Devpost fields
@@ -85,7 +85,7 @@ Upload `demo/sourcecourt-demo-en.srt` as the English caption file after the vide
 - [x] Live app is public, free, and requires no account.
 - [x] A real GPT-5.6 `max` response is shown in the demo; fixture is not presented as live.
 - [x] Final local demo is 155 seconds, audible, and captioned in English.
-- [ ] Demo is public and anonymous YouTube playback is verified.
+- [x] Demo is public and anonymous YouTube playback is verified.
 - [x] Repository is public and anonymous cloning is tested; the MIT license is visible.
 - [x] README judge path is replayed from a clean environment.
 - [x] `npm run check` passes from a clean checkout.
