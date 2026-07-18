@@ -9,7 +9,7 @@
 
 ## One-line pitch
 
-SourceCourt is a closed-world adversarial reasoning lab where students build a historical claim, GPT-5.6 mounts the strongest source-grounded challenge, and deterministic code audits provenance and revision state.
+SourceCourt is an adversarial reasoning lab where students defend historical claims, GPT-5.6 challenges them from a closed record, and deterministic code audits provenance and revision.
 
 ## Short description
 
@@ -53,6 +53,23 @@ GPT-5.6 has a separate in-product role: it runs the live, constrained cross-exam
 - **Public repository:** [SourceCourt on GitHub](https://github.com/muhneyyy666/sourcecourt)
 - **Demo video:** `[record and verify]`
 - **Primary Codex /feedback session ID:** `[add after feedback submission]`
+
+## YouTube upload metadata
+
+**Title:** `SourceCourt — Defend the claim, not the guess | OpenAI Build Week 2026`
+
+**Description:**
+
+```text
+SourceCourt is a closed-world adversarial reasoning lab where students defend historical claims with evidence. GPT-5.6 Sol acts only as source-constrained opposing counsel; Codex helped research, design, implement, test, secure, and deploy the application.
+
+Live app: https://sourcecourt.online/
+Source code: https://github.com/muhneyyy666/sourcecourt
+
+Built for the OpenAI Build Week 2026 Education track.
+```
+
+Upload `demo/sourcecourt-demo-en.srt` as the English caption file after the video finishes processing; the MP4 also contains an embedded English caption track.
 
 ## Final checklist
 
