@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="SourceCourt is a source-bound cross-examination lab for learning evidence-based reasoning."
+    >
+    <meta name="theme-color" content="#102b30">
+    <title>SourceCourt — Defend the claim, not the guess</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#claim-input">Skip to the claim</a>
+
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="SourceCourt home">
+        <span class="brand-mark" aria-hidden="true">S/C</span>
+        <span>
+          <strong>SourceCourt</strong>
+          <small>Evidence reasoning lab</small>
+        </span>
+      </a>
+
+      <div class="topbar-case" aria-label="Current case">
+        <span class="micro-label">Open record</span>
+        <span id="header-case-id">SC-1854-01</span>
+      </div>
+
+      <div class="engine-badge" id="engine-badge" role="status" aria-live="polite">
+        <span class="engine-light" aria-hidden="true"></span>
+        <span id="engine-label">Checking the bench…</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="case-heading" aria-labelledby="case-title">
+        <div class="case-stamp" aria-hidden="true">
+          <span>CASE</span>
+          <strong>1854</strong>
+          <small>SOHO / 01</small>
+        </div>
+
+        <div class="case-copy">
+          <p class="eyebrow" id="case-eyebrow">Public health · causal reasoning</p>
+          <h1 id="case-title">The Broad Street pump</h1>
+          <p class="case-question" id="case-subtitle">
+            Can one water pump explain the 1854 Soho cholera outbreak?
+          </p>
+          <p class="case-background" id="case-background"></p>
+        </div>
+
+        <dl class="case-facts" aria-label="Case facts">
+          <div>
+            <dt>Record</dt>
+            <dd id="source-count">10 sources</dd>
+          </div>
+          <div>
+            <dt>Place</dt>
+            <dd id="case-location">Soho, London</dd>
+          </div>
+          <div>
+            <dt>Session</dt>
+            <dd id="case-reading-time">7 min</dd>
+          </div>
+        </dl>
+      </section>
+
+      <nav class="stage-rail" aria-label="Case progress">
+        <ol>
+          <li class="is-active" data-stage="1">
+            <span>01</span>
+            <div><strong>Frame</strong><small>Make a claim</small></div>
+          </li>
+          <li data-stage="2">
+            <span>02</span>
+            <div><strong>Cite</strong><small>Build the record</small></div>
+          </li>
+          <li data-stage="3">
+            <span>03</span>
+            <div><strong>Challenge</strong><small>Face the opposition</small></div>
+          </li>
+          <li data-stage="4">
+            <span>04</span>
+            <div><strong>Revise</strong><small>Seal the brief</small></div>
+          </li>
+        </ol>
+      </nav>
+
+      <section class="case-workspace" id="case-workspace" aria-label="Evidence workspace">
+        <svg class="thread-layer" id="thread-layer" aria-hidden="true">
+          <defs>
+            <marker id="thread-dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4">
+              <circle cx="5" cy="5" r="3"></circle>
+            </marker>
+          </defs>
+          <g id="thread-paths"></g>
+        </svg>
+
+        <aside class="evidence-vault" aria-labelledby="evidence-title">
+          <div class="panel-heading">
+            <div>
+              <p class="micro-label">Closed record</p>
+              <h2 id="evidence-title">Evidence vault</h2>
+            </div>
+            <span class="record-counter" id="record-counter">0 / 10 cited</span>
+          </div>
+          <p class="panel-intro">
+            Cite from this record only. Open a card to inspect its limitation before relying on it.
+          </p>
+          <div class="source-list" id="source-list" aria-live="polite"></div>
+        </aside>
+
+        <div class="argument-column">
+          <article class="claim-sheet" id="claim-sheet">
+            <div class="sheet-index" aria-hidden="true">A</div>
+            <div class="sheet-heading">
+              <div>
+                <p class="micro-label">Learner’s position</p>
+                <h2>Opening claim</h2>
+              </div>
+              <span class="draft-label">DRAFT 01</span>
+            </div>
+
+            <label class="field-label" for="claim-input">State what the record establishes</label>
+            <textarea
+              id="claim-input"
+              name="claim"
+              rows="5"
+              maxlength="1800"
+              spellcheck="true"
+              aria-describedby="claim-help claim-status"
+            ></textarea>
+            <p class="field-help" id="claim-help">
+              Cite a source by adding its record marker, such as <code>[S01]</code>. One precise claim is stronger than three vague ones.
+            </p>
+
+            <div class="claim-status" id="claim-status" aria-live="polite"></div>
+
+            <div class="sheet-actions">
+              <button class="button button-quiet" type="button" id="reset-button">
+                Reset guided case
+              </button>
+              <button class="button button-primary" type="button" id="challenge-button" disabled>
+                <span>Cross-examine my claim</span>
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </article>
+
+          <section class="challenge-section" id="challenge-section" hidden aria-labelledby="challenge-title">
+            <article class="challenge-card">
+              <div class="objection-tab">OPPOSING COUNSEL</div>
+              <div class="challenge-heading">
+                <div>
+                  <p class="micro-label">One material weakness</p>
+                  <h2 id="challenge-title" tabindex="-1">Cross-examination</h2>
+                </div>
+                <span class="relation-chip" id="relation-chip">QUALIFIES</span>
+              </div>
+              <blockquote id="challenge-text"></blockquote>
+              <p class="counterpoint" id="counterpoint-text"></p>
+
+              <div class="verified-record">
+                <p class="micro-label">Resolved from the local record</p>
+                <div id="verified-sources"></div>
+              </div>
+
+              <div class="next-question">
+                <span aria-hidden="true">?</span>
+                <p id="next-question-text"></p>
+              </div>
+
+              <p class="engine-note" id="challenge-engine-note"></p>
+            </article>
+
+            <article class="revision-sheet" id="revision-sheet">
+              <div class="sheet-index" aria-hidden="true">B</div>
+              <div class="sheet-heading">
+                <div>
+                  <p class="micro-label">Learner’s reply</p>
+                  <h2>Answer, then narrow</h2>
+                </div>
+                <span class="draft-label">DRAFT 02</span>
+              </div>
+
+              <label class="field-label" for="response-input">Address the counterevidence</label>
+              <textarea
+                id="response-input"
+                rows="4"
+                maxlength="1400"
+                placeholder="Acknowledge what the opposing source changes, then explain what the remaining evidence can still support. Cite the challenged record."
+              ></textarea>
+              <p class="field-help">A strong answer cites at least one source used by opposing counsel.</p>
+
+              <label class="field-label field-label-spaced" for="revision-input">Revise the claim</label>
+              <textarea id="revision-input" rows="5" maxlength="1800" spellcheck="true"></textarea>
+              <p class="field-help">Remove certainty the record cannot carry; preserve the conclusion it can.</p>
+
+              <div class="revision-status" id="revision-status" aria-live="polite"></div>
+              <div class="sheet-actions sheet-actions-end">
+                <button class="button button-primary button-seal" type="button" id="seal-button">
+                  Seal evidence brief
+                  <span aria-hidden="true">↗</span>
+                </button>
+              </div>
+            </article>
+          </section>
+        </div>
+
+        <aside class="audit-panel" aria-labelledby="audit-title">
+          <div class="panel-heading">
+            <div>
+              <p class="micro-label">Deterministic checks</p>
+              <h2 id="audit-title">Argument audit</h2>
+            </div>
+            <output class="readiness-score" id="readiness-score" aria-label="Record-use score 0 out of 100">0</output>
+          </div>
+          <p class="panel-intro">
+            These surface checks measure record use—not support, truth, or writing quality.
+          </p>
+
+          <div class="metric-list">
+            <article class="metric">
+              <div>
+                <span>Uncited assertion rate</span>
+                <output id="uncited-value">100%</output>
+              </div>
+              <progress id="uncited-progress" max="100" value="100" aria-label="Uncited assertion rate">100%</progress>
+              <p>Lower is better. Every assertion needs a valid record marker.</p>
+            </article>
+            <article class="metric">
+              <div>
+                <span>Evidence coverage</span>
+                <output id="coverage-value">0%</output>
+              </div>
+              <progress id="coverage-progress" max="100" value="0" aria-label="Evidence facet coverage">0%</progress>
+              <p>How many evidence facets your cited sources cover.</p>
+            </article>
+            <article class="metric">
+              <div>
+                <span>Opposing record cited</span>
+                <output id="counter-value">0%</output>
+              </div>
+              <progress id="counter-progress" max="100" value="0" aria-label="Opposing record response signal">0%</progress>
+              <p>Length plus a marker from opposing counsel; meaning is not scored.</p>
+            </article>
+          </div>
+
+          <div class="facet-audit">
+            <p class="micro-label">Record coverage</p>
+            <ul id="facet-list"></ul>
+          </div>
+
+          <div class="audit-footnote">
+            <span aria-hidden="true">i</span>
+            <p>Displayed quotations come from the local record, not model output. Code checks provenance; the AI’s argument relation may be wrong.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="sealed-brief" id="sealed-brief" hidden aria-labelledby="brief-title">
+        <div class="verdict-band">
+          <div>
+            <p class="micro-label">Record sealed</p>
+            <h2 id="brief-title" tabindex="-1">Your evidence brief is ready for review.</h2>
+          </div>
+          <span class="verdict-mark" aria-hidden="true">REVISED<br>RECORD-MARKED</span>
+        </div>
+
+        <div class="brief-grid">
+          <article>
+            <p class="micro-label">Before cross-examination</p>
+            <blockquote id="brief-before"></blockquote>
+          </article>
+          <article>
+            <p class="micro-label">After cross-examination</p>
+            <blockquote id="brief-after"></blockquote>
+          </article>
+          <article class="brief-change">
+            <p class="micro-label">Observable change</p>
+            <div id="brief-deltas"></div>
+          </article>
+        </div>
+
+        <div class="brief-actions">
+          <button class="button button-quiet" type="button" id="return-button">Return to the record</button>
+          <button class="button button-inverse" type="button" id="download-button">
+            Download evidence brief
+            <span aria-hidden="true">↓</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p><strong>SourceCourt</strong> trains evidence judgment—not answer generation.</p>
+      <p>Built with Codex + GPT‑5.6 Sol · OpenAI Build Week 2026</p>
+    </footer>
+
+    <dialog class="source-dialog" id="source-dialog" aria-labelledby="dialog-title">
+      <form method="dialog">
+        <button class="dialog-close" value="close" aria-label="Close source">×</button>
+        <p class="micro-label" id="dialog-kind"></p>
+        <h2 id="dialog-title"></h2>
+        <dl class="dialog-meta">
+          <div><dt>Author</dt><dd id="dialog-author"></dd></div>
+          <div><dt>Date</dt><dd id="dialog-date"></dd></div>
+        </dl>
+        <p id="dialog-summary"></p>
+        <blockquote id="dialog-excerpt"></blockquote>
+        <div class="limitation-box">
+          <span>LIMIT</span>
+          <p id="dialog-limitation"></p>
+        </div>
+        <a id="dialog-link" href="#" target="_blank" rel="noreferrer">Inspect original record ↗</a>
+        <button class="button button-primary dialog-cite" id="dialog-cite" value="close" type="submit">
+          Cite this source
+        </button>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  </body>
+</html>

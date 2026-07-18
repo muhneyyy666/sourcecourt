@@ -1,0 +1,44 @@
+1
+00:00:00,500 --> 00:00:11,500
+Fluent is not the same as supported.
+SourceCourt makes students defend a claim with evidence instead of asking AI to write it.
+
+2
+00:00:12,500 --> 00:00:29,500
+This seven-minute history case contains ten curated sources.
+The student chooses the evidence, and every marker remains inspectable against the original record.
+
+3
+00:00:30,500 --> 00:00:57,500
+GPT-5.6 is opposing counsel, not the answer writer.
+At maximum reasoning effort, it finds one material weakness using only the closed record.
+Here it catches a familiar historical overclaim: the outbreak was already declining before the handle was removed.
+
+4
+00:00:58,500 --> 00:01:17,500
+The model returns strict JSON. Server code rejects unknown source IDs, illegal relations, missing fields, and overlong output, then attaches quotations from local data.
+Code verifies provenance; semantic relevance remains an AI judgment and may be wrong.
+
+5
+00:01:18,500 --> 00:01:29,000
+The student must acknowledge the opposing evidence and narrow the claim.
+SourceCourt never generates the final argument for them.
+
+6
+00:01:29,000 --> 00:01:52,500
+Codex built and tested the zero-dependency app, structured-output contract,
+provenance guards, accessibility, and deployment.
+GPT-5.6 serves only as the live opposing counsel.
+
+7
+00:01:54,500 --> 00:02:14,500
+Deterministic checks now show broader evidence-facet coverage, a developed response that cites the opposing record, and no uncited assertion.
+The surface record-use score moves from 48 to 93. These signals can be gamed; they are not semantic grading, a truth score, or a claim of learning outcomes.
+
+8
+00:02:15,500 --> 00:02:27,500
+The result is a portable evidence brief with the claim, challenge, learner response, revision, timestamp, metrics, and original sources.
+
+9
+00:02:28,500 --> 00:02:34,500
+SourceCourt: the student owns the conclusion; AI makes the reasoning harder to fake.
