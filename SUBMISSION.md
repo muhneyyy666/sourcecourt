@@ -52,7 +52,7 @@ GPT-5.6 has a separate in-product role: it runs the live, constrained cross-exam
 - **Live app:** [Open SourceCourt](https://sourcecourt.online/)
 - **Public repository:** [SourceCourt on GitHub](https://github.com/muhneyyy666/sourcecourt)
 - **Demo video:** [SourceCourt on YouTube](https://youtu.be/Uaos8mr1Vug)
-- **Primary Codex /feedback session ID:** `[add after feedback submission]`
+- **Primary Codex /feedback session ID:** `019f73bb-c286-7b71-b596-5fd4c0959af1`
 
 ## Devpost fields
 
@@ -92,6 +92,6 @@ Upload `demo/sourcecourt-demo-en.srt` as the English caption file after the vide
 - [x] `npm run smoke:live` proves a completed Responses run with provider-reported `gpt-5.6-sol`, `max`, and a request ID.
 - [x] API key and private endpoint are absent from repository, video, download, and browser bundle.
 - [x] Item-level source provenance and host terms are reviewed and documented in `DATA_PROVENANCE.md`.
-- [ ] `/feedback` is submitted and the qualifying session ID is copied exactly.
+- [x] `/feedback` is submitted and the qualifying session ID is copied exactly.
 - [x] Eligibility, deadline, and solo team status are reconfirmed against the Official Rules.
 - [ ] Keep the public origin online through August 12, 2026, when results are scheduled to be announced.
